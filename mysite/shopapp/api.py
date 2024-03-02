@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Product, Student
-from .serializers import ProductSerializer, LessonSerializer
+from .serializers import ProductSerializer, LessonSerializer, ProductSerializerDop
 
 
 class ProductListAPIView(generics.ListAPIView):
@@ -27,3 +27,7 @@ class StudentLessonsView(APIView):
             return Response({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class ProductStatsAPIView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializerDop
