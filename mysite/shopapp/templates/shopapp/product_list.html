@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% for product in products %}
+    <h2>{{ product.name }}</h2>
+    <p>Creator: {{ product.creator }}</p>
+    <p>Start Date: {{ product.start_date }}</p>
+    <p>Start Time: {{ product.start_time }}</p>
+    <p>Max Students per Group: {{ product.max_students_per_group }}</p>
+    <p>Min Students per Group: {{ product.min_students_per_group }}</p>
+    <a href="{% url 'shopapp:register' product_id=product.id %}">Register</a>
+    <hr>
+{% endfor %}
+{% endblock %}
